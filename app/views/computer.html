@@ -4,9 +4,9 @@
       <div class="pull-left">
         <ol class="breadcrumb">
           <li><a ui-sref="app.home">Home</a></li>
-          <li class="active"><span>Projects</span></li>
+          <li class="active"><span>Computers</span></li>
         </ol>
-        <h1>Projects</h1>
+        <h1>Computers</h1>
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
     <div class="main-box">
       <p>Filter: <input class="form-control" type="text" ng-model="filter.$" /></p>
       <table ng-table="projectTable" class="table ng-table-responsive" >
-        <tr ng-repeat="p in $data" ng-click="getProject(p)">
+        <tr ng-repeat="p in $data" ng-click="getComputer(p)">
           <td data-title="'Id'" >{{p.idProject}}</td>
           <td data-title="'Name'" >{{p.name}}</td>
           <td data-title="'Status'" >{{p.status}}</td>

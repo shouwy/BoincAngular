@@ -19,7 +19,7 @@ angular.module('boincApp', [
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('app', {
         url : '/',
@@ -43,7 +43,7 @@ angular.module('boincApp', [
         }
       })
       .state('app.home', {
-        url : '/home',
+        url : 'home',
         views : {
           'content@' : {
             templateUrl: 'views/main.html',
@@ -52,7 +52,7 @@ angular.module('boincApp', [
         }
       })
       .state('app.project', {
-        url : '/projects',
+        url : 'projects',
         views : {
           'content@' : {
             templateUrl: 'views/project.html',
@@ -61,7 +61,7 @@ angular.module('boincApp', [
         }
       })
       .state('app.computer', {
-        url : '/contact',
+        url : 'computers',
         views : {
           'content@' : {
             templateUrl : 'views/computer.html',
@@ -70,7 +70,7 @@ angular.module('boincApp', [
         }
       })
       .state('app.user', {
-        url : '/user',
+        url : 'users',
         views : {
           'content@' : {
             templateUrl : 'views/user.html',
@@ -79,5 +79,5 @@ angular.module('boincApp', [
         }
       });
   }).constant('APP', {
-    baseUrl : 'http://localhost:8080/'
+    baseUrl : 'http://localhost:8080/BoincAPI/'
   });

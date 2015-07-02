@@ -1,9 +1,10 @@
 /**
- * Created by Inspiron on 01/07/2015.
+ * Created by Inspiron on 02/07/2015.
  */
 'use strict';
+
 angular.module('boincApp')
-  .service('projectService', function($http, $filter, APP) {
+  .service('computerService', function($http, $filter, APP) {
     function filterData(data, filter){
       return $filter('filter')(data, filter);
     }
@@ -22,7 +23,7 @@ angular.module('boincApp')
 
     var service = {
       cachedData : [],
-      getData : function($defer, params, filter) {
+      getData : function($defer, params, filter, apiUrl) {
         if (service.cachedData.length > 0){
           console.log('Using Cached Data');
           var filteredData = filterData(service.cachedData, filter);
@@ -30,7 +31,7 @@ angular.module('boincApp')
           params.total(filteredData.length);
           $defer.resolve(transformedData);
         } else {
-          $http.get(APP.baseUrl + 'project/list/').success(
+          $http.get(APP.baseUrl + apiUrl).success(
             function (resp) {
               console.log('Fetching Data');
               angular.copy(resp, service.cachedData);

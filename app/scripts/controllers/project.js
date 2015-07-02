@@ -5,7 +5,7 @@
 
 angular.module('boincApp')
   .controller('projectCtrl', function($scope, ngTableParams, projectService){
-    $scope.projects = projectService.cachedData;
+   // var projects = projectService.data;
 
     $scope.projectTable = new ngTableParams({
         page : 1,
@@ -13,12 +13,15 @@ angular.module('boincApp')
       }, {
         total : 0,
         getData : function($defer, params) {
-          projectService.getData($defer, params, $scope.filter);
+          projectService.getData($defer, params, $scope.filter, 'project/list');
         }
       }
     );
-
-    $scope.$watch('filter.$', function() {
+    $scope.$watch("filter.$", function () {
       $scope.projectTable.reload();
     });
+
+    $scope.getProject = function (proj) {
+      console.log(proj);
+    }
   });
