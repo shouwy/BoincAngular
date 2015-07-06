@@ -15,7 +15,9 @@ angular.module('boincApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngTable',
+    'datatables',
+    'datatables.bootstrap',
+    'datatables.tabletools',
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {

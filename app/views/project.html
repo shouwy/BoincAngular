@@ -13,15 +13,38 @@
 
   <div class="col-md-12">
     <div class="main-box">
-      <p>Filter: <input class="form-control" type="text" ng-model="filter.$" /></p>
-      <table ng-table="projectTable" class="table ng-table-responsive" >
-        <tr ng-repeat="p in $data" ng-click="getProject(p)">
-          <td data-title="'Id'" >{{p.idProject}}</td>
-          <td data-title="'Name'" >{{p.name}}</td>
-          <td data-title="'Status'" >{{p.status}}</td>
-          <td data-title="'Archived'" >{{p.archived}}</td>
-        </tr>
+      <table datatable="ng" dt-options="projectCtrl.dtOptions" class="row-border hover" >
+        <thead>
+          <tr>
+            <th ng-hide="true">ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Archived</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="p in projects track by $index" ng-class="{rowActive : $index == selectedRow}" ng-click="getProject(p, $index)">
+            <td ng-hide="true" >{{$index}}</td>
+            <td ng-bind="p.name" ></td>
+            <td ng-bind="p.status" ></td>
+            <td ng-bind="p.archived" ></td>
+          </tr>
+        </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-5 col-sm-6 col-xs-12 col-lg-offset-1" ng-if="rowDetail">
+      <div class="main-box infographic-box colored green-bg green-box-text">
+        <p class="text-center">Informations Generales</p>
+        <ul class="list-unstyled">
+          <li><span>Id :</span><span class="response-data">{{rowDetail.idProject}}</span></li>
+          <li><span>Nom :</span><span class="response-data">{{rowDetail.name}}</span></li>
+          <li><span>Status :</span><span class="response-data">{{rowDetail.status}}</span></li>
+          <li><span>Archived :</span><span class="response-data">{{rowDetail.archived}}</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

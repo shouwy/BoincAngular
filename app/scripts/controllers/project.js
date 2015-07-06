@@ -4,24 +4,32 @@
 'use strict';
 
 angular.module('boincApp')
-  .controller('projectCtrl', function($scope, ngTableParams, projectService){
-   // var projects = projectService.data;
-
-    $scope.projectTable = new ngTableParams({
-        page : 1,
-        count : 10
-      }, {
-        total : 0,
-        getData : function($defer, params) {
-          projectService.getData($defer, params, $scope.filter, 'project/list');
+  .controller('projectCtrl', function($scope, DTOptionsBuilder, projectService){
+    var vm = this;
+    vm.dtOptions = DTOptionsBuilder.fromSource('')
+      .withBootstrap()
+      .withBootstrapOptions({
+        TableTools : {
+          classes : {
+            buttons : {
+              normal : 'btn btn-info'
+            }
+          }
         }
-      }
-    );
-    $scope.$watch("filter.$", function () {
-      $scope.projectTable.reload();
-    });
+      })
+      .withTableTools('swf/copy_csv_xls_pdf.swf')
+      .withTableToolsButtons([
+        'pdf',
+        'csv'
+      ]);
 
-    $scope.getProject = function (proj) {
+    $scope.projects = projectService.list();
+
+    $scope.getProject = function (proj, index) {
+      $scope.selectedRow = index;
+      $scope.rowDetail = proj;
       console.log(proj);
-    }
+      $scope.computers = projectService.listComputer(proj.idProject);
+      $scope.users = projectService.listUser(proj.idProject);
+    };
   });

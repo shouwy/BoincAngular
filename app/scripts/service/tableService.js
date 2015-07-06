@@ -22,11 +22,11 @@ angular.module('boincApp')
   }
 
   var service = {
-    cachedData : [],
+    cachedProject : [],
     getData : function($defer, params, filter, apiUrl) {
-      if (service.cachedData.length > 0){
+      if (service.cachedProject.length > 0){
         console.log('Using Cached Data');
-        var filteredData = filterData(service.cachedData, filter);
+        var filteredData = filterData(service.cachedProject, filter);
         var transformedData = sliceData(orderData(filteredData, params), params);
         params.total(filteredData.length);
         $defer.resolve(transformedData);
@@ -34,7 +34,7 @@ angular.module('boincApp')
         $http.get(APP.baseUrl + apiUrl).success(
           function (resp) {
             console.log('Fetching Data');
-            angular.copy(resp, service.cachedData);
+            angular.copy(resp, service.cachedProject);
             params.total(resp.length);
             var filteredData = $filter('filter')(resp, filter);
             var transformedData = transformData(resp, filter, params);
