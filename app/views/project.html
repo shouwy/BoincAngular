@@ -1,4 +1,5 @@
-<div class="row ng-scope" ng-controller="projectCtrl">
+<div class="ng-scope" ng-controller="projectCtrl">
+  <div class="row">
   <div class="col-lg-12">
     <div id="content-header" class="clearfix">
       <div class="pull-left">
@@ -10,9 +11,12 @@
       </div>
     </div>
   </div>
-
+  </div>
+  <div class="row">
   <div class="col-md-12">
-    <div class="main-box">
+    <div class="main-box clearfix">
+      <header class="main-box-header clearfix"><h2 class="pull-left">Project List</h2></header>
+      <div class="main-box-body clearfix">
       <table datatable="ng" dt-options="projectCtrl.dtOptions" class="row-border hover" >
         <thead>
           <tr>
@@ -31,19 +35,74 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
-
+  </div>
   <div class="row">
-    <div class="col-lg-5 col-sm-6 col-xs-12 col-lg-offset-1" ng-if="rowDetail">
-      <div class="main-box infographic-box colored green-bg green-box-text">
-        <p class="text-center">Informations Generales</p>
-        <ul class="list-unstyled">
-          <li><span>Id :</span><span class="response-data">{{rowDetail.idProject}}</span></li>
-          <li><span>Nom :</span><span class="response-data">{{rowDetail.name}}</span></li>
-          <li><span>Status :</span><span class="response-data">{{rowDetail.status}}</span></li>
-          <li><span>Archived :</span><span class="response-data">{{rowDetail.archived}}</span></li>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="rowDetail">
+      <div class="main-box clearfix">
+        <header class="main-box-header clearfix"><h2>General</h2></header>
+        <div class="main-box-body clearfix">
+        <ul class="widget-products">
+          <li class="clearfix"><div class="name"><label>Id : <span class="response-data">{{rowDetail.idProject}}</span></label></div></li>
+          <li class="clearfix"><div class="name"><label>Nom : <span class="response-data">{{rowDetail.name}}</span></label></div></li>
+          <li class="clearfix"><div class="name"><label>Status : <span class="response-data">{{rowDetail.status}}</span></label></div></li>
+          <li class="clearfix"><div class="name"><label>Archived : <span class="response-data">{{rowDetail.archived}}</span></label></div></li>
         </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="rowDetail">
+      <div class="main-box clearfix">
+        <header class="main-box-header clearfix"><h2>List User</h2></header>
+        <div class="main-box-body clearfix">
+          <table datatable="ng" dt-options="projectCtrl.dtOptions" class="row-border hover" >
+            <thead>
+            <tr>
+              <th ng-hide="true">ID</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Archived</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="u in users track by $index" ng-class="{rowActive : $index == selectedRow}" ng-click="getProject(p, $index)">
+              <td ng-hide="true" >{{$index}}</td>
+              <td ng-bind="p.name" ></td>
+              <td ng-bind="p.status" ></td>
+              <td ng-bind="p.archived" ></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="rowDetail">
+      <div class="main-box clearfix">
+        <header class="main-box-header clearfix"><h2>List Computer</h2></header>
+        <div class="main-box-body clearfix">
+          <table datatable="ng" dt-options="projectCtrl.dtOptions" class="row-border hover" >
+            <thead>
+            <tr>
+              <th ng-hide="true">ID</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Archived</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="c in computers track by $index" ng-class="{rowActive : $index == selectedRow}" ng-click="getProject(p, $index)">
+              <td ng-hide="true" >{{$index}}</td>
+              <td ng-bind="p.name" ></td>
+              <td ng-bind="p.status" ></td>
+              <td ng-bind="p.archived" ></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -1,31 +1,32 @@
 'use strict';
-
 /**
- * @ngdoc function
- * @name testApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the testApp
+ * Created by Inspiron on 01/07/2015.
  */
 angular.module('boincApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  })
-  .controller('headerCtrl', function() {
+  .controller('mainCtrl', function ($scope, DTOptionsBuilder, mainService) {
+    var vm = this;
+    vm.dtOptions = DTOptionsBuilder.fromSource('')
+      .withBootstrap()
+      .withBootstrapOptions({
+        TableTools : {
+          classes : {
+            buttons : {
+              normal : 'btn btn-info'
+            }
+          }
+        }
+      })
+      .withTableTools('swf/copy_csv_xls_pdf.swf')
+      .withTableToolsButtons([
+        'pdf',
+        'csv'
+      ]);
+    $scope.statistics = mainService.allStat();
 
-  })
-  .controller('contentCtrl', function() {
-
-  })
-  .controller('sideCtrl', function($scope) {
-    $scope.hideMenu = function(){
-      angular.element('.navbar-ex1-collapse').removeClass('in');
-    };
-  })
-  .controller('footerCtrl', function() {
-
+    $scope.transformDate = function(date){
+      var res = new Date();
+      res.setTime(date);
+      return res.toLocaleDateString();
+    }
   });
+

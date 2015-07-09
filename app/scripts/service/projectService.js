@@ -3,28 +3,28 @@
  */
 'use strict';
 angular.module('boincApp')
-  .service('projectService', function($resource, $filter, APP) {
-    return $resource(APP.BaseUrl + 'view/:id',{id : '@id'},
+  .service('projectService', function($resource, APP) {
+    return $resource(APP.baseUrl + 'view/:id',{id : '@id'},
       {
         updateProject : {
-          url : APP.BaseUrl + 'update',
+          url : APP.baseUrl + 'update',
           method : 'POST'
         },
         createProject : {
-          url : APP.BaseUrl + 'create',
+          url : APP.baseUrl + 'create',
           method : 'POST'
         },
         deleteProject : {
-          url : APP.BaseUrl + 'delete',
+          url : APP.baseUrl + 'delete',
           method : 'POST'
         },
         listUser : {
-          url : APP.BaseUrl + ':id/list/user',
+          url : APP.baseUrl + ':id/list/user',
           method : 'GET',
           isArray : true
         },
         listComputer : {
-          url : APP.BaseUrl + ':id/list/computer',
+          url : APP.baseUrl + ':id/list/computer',
           method : 'GET',
           isArray : true
         },

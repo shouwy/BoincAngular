@@ -49,7 +49,7 @@ angular.module('boincApp', [
         views : {
           'content@' : {
             templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
+            controller: 'mainCtrl'
           }
         }
       })
