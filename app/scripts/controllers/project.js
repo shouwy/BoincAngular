@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('boincApp')
-  .controller('projectCtrl', function($scope, DTOptionsBuilder, projectService){
+  .controller('projectCtrl', function($scope, DTOptionsBuilder, projectService, statisticService){
     var vm = this;
     vm.dtOptions = DTOptionsBuilder.fromSource('')
       .withBootstrap()
@@ -26,10 +26,13 @@ angular.module('boincApp')
     $scope.projects = projectService.list();
 
     $scope.getProject = function (proj, index) {
-      $scope.selectedRow = index;
+      $scope.selectedRowProject = index;
       $scope.rowDetail = proj;
-      console.log(proj);
-      $scope.computers = projectService.listComputer(proj.idProject);
-      $scope.users = projectService.listUser(proj.idProject);
+
+      $scope.computers = projectService.listComputer({id : proj.idProject});
+      $scope.chartDataComputer = statisticService.projectComputer({idProject : proj.idProject});
+
+      $scope.users = projectService.listUser({id : proj.idProject});
+      $scope.chartDataUser = statisticService.projectUser({idProject : proj.idProject});
     };
   });

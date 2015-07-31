@@ -18,7 +18,8 @@ angular.module('boincApp', [
     'datatables',
     'datatables.bootstrap',
     'datatables.tabletools',
-    'ui.router'
+    'ui.router',
+    'highcharts-ng'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');

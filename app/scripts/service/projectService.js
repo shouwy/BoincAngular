@@ -19,12 +19,12 @@ angular.module('boincApp')
           method : 'POST'
         },
         listUser : {
-          url : APP.baseUrl + ':id/list/user',
+          url : APP.baseUrl + 'project/:id/list/user',
           method : 'GET',
           isArray : true
         },
         listComputer : {
-          url : APP.baseUrl + ':id/list/computer',
+          url : APP.baseUrl + 'project/:id/list/computer',
           method : 'GET',
           isArray : true
         },

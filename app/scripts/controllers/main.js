@@ -27,6 +27,6 @@ angular.module('boincApp')
       var res = new Date();
       res.setTime(date);
       return res.toLocaleDateString();
-    }
+    };
   });
 
